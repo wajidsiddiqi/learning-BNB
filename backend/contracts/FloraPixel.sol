@@ -5,14 +5,17 @@ pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 error FloraPixel__MintNotEnabled();
 error FloraPixel__NotEnoughMoneySent();
 error FloraPixel__WeSoldOut();
 error FloraPixel__WrongId();
+error FloraPixel__WithdrawFailed();
+error FloraPixel__HasNoBalance();
 
-contract FloraPixel is ERC721, Ownable {
+contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
     using Strings for uint256;
     //* State Variables
     uint256 private constant MINT_PRICE = 0.01 ether;
@@ -23,7 +26,13 @@ contract FloraPixel is ERC721, Ownable {
         "ipfs://bafybeidlnjv7bbart3azzizjh76ywpvtns67nz3c2pdu5xvytdrtwbeopu/";
 
     //*Functions
-    constructor() ERC721("FloraPixel", "FP") {}
+    constructor() ERC721("FloraPixel", "FP") {
+        for (uint256 i = 0; i < 2; i++) {
+            uint256 tokenId = s_totalSupply + 1;
+            s_totalSupply++;
+            _safeMint(msg.sender, tokenId);
+        }
+    }
 
     /**@dev This function changes the state of nft*/
     function changeMintState() external onlyOwner {
@@ -70,9 +79,15 @@ contract FloraPixel is ERC721, Ownable {
     }
 
     /**@dev This is a withdraw function*/
-    function withdraw() external onlyOwner {
-        uint256 ammount = address(this).balance;
-        payable(msg.sender).transfer(ammount);
+    function withdraw() external onlyOwner nonReentrant {
+        if (address(this).balance == 0) {
+            revert FloraPixel__HasNoBalance();
+        }
+
+        (bool success, ) = msg.sender.call{value: address(this).balance}("");
+        if (!success) {
+            revert FloraPixel__WithdrawFailed();
+        }
     }
 
     function Airdrop(
