@@ -1,6 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("hardhat-gas-reporter");
-require("hardhat-deploy");
 require("dotenv").config();
 
 const SEPOLIA_RPC_URL =
