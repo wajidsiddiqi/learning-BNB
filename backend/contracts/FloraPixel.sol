@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-/**@author Wajid*/
+/**@author Wajid ( https://twitter.com/abdulwajidsid )*/
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -23,7 +23,7 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
     uint256 private constant MAX_SUPPLY = 10;
     uint256 private s_mintState = 1;
     string private constant BASE_TOKEN_URI =
-        "ipfs://bafybeidlnjv7bbart3azzizjh76ywpvtns67nz3c2pdu5xvytdrtwbeopu/";
+        "ipfs://bafybeih5lhmwj4rz74dgpznvr2dsofwibklyo3aumbzf2oz7aqlhpiv22y/";
 
     //*Functions
     constructor() ERC721("FloraPixel", "FP") {
