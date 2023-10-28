@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 /**@author Wajid ( https://twitter.com/abdulwajidsid )*/
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 error FloraPixel__MintNotEnabled();
@@ -14,6 +14,7 @@ error FloraPixel__WeSoldOut();
 error FloraPixel__WrongId();
 error FloraPixel__WithdrawFailed();
 error FloraPixel__HasNoBalance();
+error FloraPixel__DifferentLengthOfReceiversAndQuantity();
 
 contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
     using Strings for uint256;
@@ -26,7 +27,9 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
         "ipfs://bafybeih5lhmwj4rz74dgpznvr2dsofwibklyo3aumbzf2oz7aqlhpiv22y/";
 
     //*Functions
-    constructor() ERC721("FloraPixel", "FP") {
+    constructor(
+        address initialOwner
+    ) ERC721("FloraPixel", "FP") Ownable(initialOwner) {
         for (uint256 i = 0; i < 2; i++) {
             uint256 tokenId = s_totalSupply + 1;
             s_totalSupply++;
@@ -65,10 +68,7 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
     function tokenURI(
         uint256 tokenId
     ) public view override returns (string memory) {
-        require(
-            _exists(tokenId),
-            "ERC721Metadata: URI query for nonexistent token"
-        );
+        _requireOwned(tokenId);
 
         string memory baseURI = BASE_TOKEN_URI;
 
@@ -120,7 +120,7 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
         return MAX_SUPPLY;
     }
 
-    function getMintPrice() public view returns (uint256) {
+    function getMintPrice() public pure returns (uint256) {
         return MINT_PRICE;
     }
 }
