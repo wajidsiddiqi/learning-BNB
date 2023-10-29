@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("hardhat-gas-reporter");
+require("hardhat-deploy");
 require("dotenv").config();
 
 const BSC_RPC_URL = process.env.BSC_RPC_URL || "http://bsc-key/example";
@@ -19,7 +20,7 @@ module.exports = {
     bscTestnet: {
       url: BSC_RPC_URL,
       chainId: 97,
-      accounts: { WALLET_PRIVATE_KEY },
+      accounts: [WALLET_PRIVATE_KEY],
       blockConfirmations: 6,
     },
     localhost: {
