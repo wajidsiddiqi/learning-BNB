@@ -132,55 +132,53 @@ const { assert, expect } = require("chai");
           assert.equal(userBalance, 3);
         });
       });
-      /*
+
       describe("Token URI", () => {
-        let quantity, value, id;
+        let quantity, value;
 
         beforeEach(async () => {
           const price = await floraPixel.getMintPrice();
           quantity = 1;
           value = BigInt(price.toString()) * BigInt(quantity);
-          id = await floraPixel.getTokenAId();
           const txResponse = await floraPixel.changeMintState();
           await txResponse.wait(1);
         });
 
-        it("reverts if id don't exist", async () => {
-          await expect(floraPixel.uri(id)).to.be.revertedWithCustomError(
+        it("reverts if token id don't exist", async () => {
+          await expect(floraPixel.tokenURI(3)).to.be.revertedWithCustomError(
             floraPixel,
-            "floraPixel__TokenNonexistent"
+            "ERC721NonexistentToken"
           );
         });
 
-        it("returns uri", async () => {
-          const txResponse = await floraPixel.mint(id, quantity, {
+        it("returns Token uri", async () => {
+          const txResponse = await floraPixel.mint(quantity, {
             value: value,
           });
           await txResponse.wait(1);
-          const uri = await floraPixel.uri(id);
+          const tokenUri = await floraPixel.tokenURI(3);
 
           assert.equal(
-            uri.toString(),
-            "ipfs://bafkreiccfopvgkp6yb44f62oh5tlbrf5bvpqvn2x2sbjnmvv4rni57eitq"
+            tokenUri.toString(),
+            "ipfs://bafybeih5lhmwj4rz74dgpznvr2dsofwibklyo3aumbzf2oz7aqlhpiv22y/3.json"
           );
         });
       });
 
       describe("Withdraw", () => {
-        let quantity, value, id;
+        let quantity, value;
 
         beforeEach(async () => {
           const price = await floraPixel.getMintPrice();
           quantity = 1;
           value = BigInt(price.toString()) * BigInt(quantity);
-          id = await floraPixel.getTokenAId();
           const txResponse = await floraPixel.changeMintState();
           await txResponse.wait(1);
 
           const accounts = await ethers.getSigners();
           const txResponse2 = await floraPixel
             .connect(accounts[1])
-            .mint(id, quantity, {
+            .mint(quantity, {
               value: value,
             });
           await txResponse2.wait(1);
@@ -192,7 +190,10 @@ const { assert, expect } = require("chai");
 
           await expect(
             floraPixel.connect(nonowner).withdraw()
-          ).to.be.revertedWith("Ownable: caller is not the owner");
+          ).to.be.revertedWithCustomError(
+            floraPixel,
+            "OwnableUnauthorizedAccount"
+          );
         });
 
         it("successfully withdraws", async () => {
@@ -219,5 +220,14 @@ const { assert, expect } = require("chai");
             (initialOwnerBalance - gasCost + BigInt(initialBalance)).toString()
           );
         });
-      });*/
+      });
+
+      describe("Withdraw function reverts", () => {
+        it("fails if contract has zero balance", async () => {
+          await expect(floraPixel.withdraw()).to.be.revertedWithCustomError(
+            floraPixel,
+            "FloraPixel__HasNoBalance"
+          );
+        });
+      });
     });
