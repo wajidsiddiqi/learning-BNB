@@ -97,7 +97,7 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
         if (_to.length != _value.length)
             revert FloraPixel__DifferentLengthOfReceiversAndQuantity();
 
-        for (uint256 i = 0; i <= _to.length; i++) {
+        for (uint256 i = 0; i < _to.length; i++) {
             safeTransferFrom(msg.sender, _to[i], _value[i]);
         }
     }
