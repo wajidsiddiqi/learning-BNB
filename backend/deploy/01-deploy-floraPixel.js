@@ -9,7 +9,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   const floraPixel = await deploy("FloraPixel", {
     from: deployer,
     log: true,
-    args: ["0xC306DE9748e6395e21485C9C2F16847060c95C89"],
+    args: ["0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"],
     waitConfirmations: network.config.blockConfirmations || 1,
   });
 
