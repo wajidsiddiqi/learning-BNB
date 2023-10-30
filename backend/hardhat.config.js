@@ -49,8 +49,9 @@ module.exports = {
     },
   },
   gasReporter: {
-    enabled: false,
+    enabled: true,
     currency: "USD",
+    token: "BNB",
     outputFile: "gas-report.txt",
     noColors: true,
     coinmarketcap: COINMARKETCAP_API_KEY,
