@@ -64,23 +64,22 @@ const { assert, expect } = require("chai");
           );
         });
       });
-      /*
+
       describe("Mint", () => {
-        let quantity, value, id;
+        let quantity, value;
 
         beforeEach(async () => {
-          const price = await floraPixel.getPrice();
+          const price = await floraPixel.getMintPrice();
           quantity = 1;
           value = BigInt(price.toString()) * BigInt(quantity);
-          id = await floraPixel.getTokenAId();
         });
 
         it("reverts if mint is not open", async () => {
           await expect(
-            floraPixel.mint(id, quantity, { value: value })
+            floraPixel.mint(quantity, { value: value })
           ).to.be.revertedWithCustomError(
             floraPixel,
-            "floraPixel__MintNotEnabled"
+            "FloraPixel__MintNotEnabled"
           );
         });
 
@@ -89,10 +88,10 @@ const { assert, expect } = require("chai");
           await txResponse.wait(1);
 
           await expect(
-            floraPixel.mint(id, 2, { value: value })
+            floraPixel.mint(2, { value: value })
           ).to.be.revertedWithCustomError(
             floraPixel,
-            "floraPixel__NotEnoughMoneySent"
+            "FloraPixel__NotEnoughMoneySent"
           );
         });
 
@@ -103,51 +102,42 @@ const { assert, expect } = require("chai");
           const accounts = await ethers.getSigners();
           const maxSupply = await floraPixel.getMaxSupply();
 
-          for (let i = 0; i < maxSupply; i++) {
+          for (let i = 2; i < maxSupply; i++) {
             const mintAccounts = accounts[i];
             const txResponse = await floraPixel
               .connect(mintAccounts)
-              .mint(id, quantity, {
+              .mint(quantity, {
                 value: value,
               });
             await txResponse.wait(1);
           }
 
           await expect(
-            floraPixel.mint(id, quantity, { value: value })
-          ).to.be.revertedWithCustomError(floraPixel, "floraPixel__WeSoldOut");
+            floraPixel.mint(quantity, { value: value })
+          ).to.be.revertedWithCustomError(floraPixel, "FloraPixel__WeSoldOut");
         });
 
-        it("reverts if wrong token id added", async () => {
-          const txResponse = await floraPixel.changeMintState();
-          await txResponse.wait(1);
-
-          await expect(
-            floraPixel.mint(2, quantity, { value: value })
-          ).to.be.revertedWithCustomError(floraPixel, "floraPixel__WrongId");
-        });
-
-        it("mints nft and updates accordingly", async () => {
+        it("mints nfts and updates accordingly", async () => {
           const txResponse1 = await floraPixel.changeMintState();
           await txResponse1.wait(1);
-          const txResponse = await floraPixel.mint(id, quantity, {
+          const txResponse = await floraPixel.mint(quantity, {
             value: value,
           });
           await txResponse.wait(1);
-          const totalSupply = await floraPixel.totalSupply(id);
+          const totalSupply = await floraPixel.getTotalSupply();
           const userAddress = deployer.address;
-          const userBalance = await floraPixel.balanceOf(userAddress, id);
+          const userBalance = await floraPixel.balanceOf(userAddress);
 
-          assert.equal(totalSupply, 1);
-          assert.equal(userBalance, 1);
+          assert.equal(totalSupply, 3);
+          assert.equal(userBalance, 3);
         });
       });
-
+      /*
       describe("Token URI", () => {
         let quantity, value, id;
 
         beforeEach(async () => {
-          const price = await floraPixel.getPrice();
+          const price = await floraPixel.getMintPrice();
           quantity = 1;
           value = BigInt(price.toString()) * BigInt(quantity);
           id = await floraPixel.getTokenAId();
@@ -180,7 +170,7 @@ const { assert, expect } = require("chai");
         let quantity, value, id;
 
         beforeEach(async () => {
-          const price = await floraPixel.getPrice();
+          const price = await floraPixel.getMintPrice();
           quantity = 1;
           value = BigInt(price.toString()) * BigInt(quantity);
           id = await floraPixel.getTokenAId();
