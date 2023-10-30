@@ -44,12 +44,23 @@ const { assert, expect } = require("chai");
       });
 
       describe("Mint State Change", () => {
-        it("changes mint state", async () => {
+        it("changes mint state to true", async () => {
           const txResponse = await floraPixel.changeMintState();
           await txResponse.wait(1);
           const mintState = await floraPixel.getMintState();
 
           assert.equal(mintState, true);
+        });
+
+        it("changes mint state to false", async () => {
+          const txResponse = await floraPixel.changeMintState();
+          await txResponse.wait(1);
+
+          const txResponse2 = await floraPixel.changeMintState();
+          await txResponse2.wait(1);
+          const mintState = await floraPixel.getMintState();
+
+          assert.equal(mintState, false);
         });
 
         it("reverts when non owner changes mint state", async () => {
