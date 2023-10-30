@@ -44,7 +44,7 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
     }
 
     /**@dev This is a public mint function that checks public requirements*/
-    function Mint(uint256 quantity) public payable {
+    function mint(uint256 quantity) public payable {
         if (s_mintState == 1) revert FloraPixel__MintNotEnabled();
         if (msg.value != MINT_PRICE * quantity)
             revert FloraPixel__NotEnoughMoneySent();
@@ -90,7 +90,7 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
         }
     }
 
-    function Airdrop(
+    function airdrop(
         address[] calldata _to,
         uint256[] calldata _value
     ) external onlyOwner {
