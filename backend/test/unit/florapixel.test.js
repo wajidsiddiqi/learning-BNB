@@ -230,4 +230,32 @@ const { assert, expect } = require("chai");
           );
         });
       });
+
+      describe("Airdrop", () => {
+        const to = [
+          "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
+          "0xdD2FD4581271e230360230F9337D5c0430Bf44C0",
+        ];
+        const value = [1, 2];
+
+        it("reverts if lengths are not same", async () => {
+          await expect(
+            floraPixel.airdrop(to, [1])
+          ).to.be.revertedWithCustomError(
+            floraPixel,
+            "FloraPixel__DifferentLengthOfReceiversAndQuantity"
+          );
+        });
+
+        it("successfully airdrops the nfts", async () => {
+          const txResponse = await floraPixel.airdrop(to, value);
+          await txResponse.wait(1);
+
+          const userBalance1 = await floraPixel.balanceOf(to[0]);
+          const userBalance2 = await floraPixel.balanceOf(to[1]);
+
+          assert.equal(userBalance1, 1);
+          assert.equal(userBalance2, 1);
+        });
+      });
     });
