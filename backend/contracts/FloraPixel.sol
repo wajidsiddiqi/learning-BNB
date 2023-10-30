@@ -21,7 +21,7 @@ contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
     //* State Variables
     uint256 private constant MINT_PRICE = 0.01 ether;
     uint256 private s_totalSupply = 0;
-    uint256 private constant MAX_SUPPLY = 10;
+    uint256 private constant MAX_SUPPLY = 12;
     uint256 private s_mintState = 1;
     string private constant BASE_TOKEN_URI =
         "ipfs://bafybeih5lhmwj4rz74dgpznvr2dsofwibklyo3aumbzf2oz7aqlhpiv22y/";
