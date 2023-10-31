@@ -1,0 +1,19 @@
+{
+  "name": "Flora Pixel #8",
+  "description": "This is my portfolio nft project created on BNB Chain",
+  "image": "ipfs://bafybeief226mqucq6yfmwespwdh7xdb7xs3xgatkpqun573smtzygxd2ii/8.jpeg",
+  "attributes": [
+    {
+      "trait_type": "Language",
+      "value": "Solidity, JavaScript"
+    },
+    {
+      "trait_type": "Stack",
+      "value": "Hardhat, Nextjs, Styled Components"
+    },
+    {
+      "trait_type": "Erc",
+      "value": "721"
+    }
+  ]
+}
