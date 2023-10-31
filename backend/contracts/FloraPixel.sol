@@ -19,7 +19,7 @@ error FloraPixel__DifferentLengthOfReceiversAndQuantity();
 contract FloraPixel is ERC721, Ownable, ReentrancyGuard {
     using Strings for uint256;
     //* State Variables
-    uint256 private constant MINT_PRICE = 0.01 ether;
+    uint256 private constant MINT_PRICE = 0.01 ether // 0.01 BNB;
     uint256 private s_totalSupply = 0;
     uint256 private constant MAX_SUPPLY = 12;
     uint256 private s_mintState = 1;
