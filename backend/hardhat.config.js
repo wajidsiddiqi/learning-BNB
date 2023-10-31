@@ -45,7 +45,7 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      bsc: { BSCSCAN_API_KEY },
+      bscTestnet: BSCSCAN_API_KEY,
     },
   },
   gasReporter: {
