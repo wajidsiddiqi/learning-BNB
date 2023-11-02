@@ -13,7 +13,7 @@ import {
   StyledConnectButton,
   StyledNav,
   StyledButton,
-  PageWrapperDark,
+  HamburgerMenu,
   HeaderBtn,
   NavLinkText,
 } from "@/app/styles/styles.js";
@@ -53,20 +53,7 @@ export default function Header() {
           </NextLink>
           {/* Hamburger Menu */}
           {isMobile && isOpen && (
-            <PageWrapperDark
-              style={{
-                position: "fixed",
-                top: "0",
-                right: isOpen ? "0" : "300px",
-                height: "100vh",
-                width: "300px",
-                zIndex: "998",
-                transition: "right 0.3s ease-in-out",
-                padding: "0",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+            <HamburgerMenu right={isOpen}>
               <CenterSpaceAround
                 style={{ flexDirection: "column", gap: "2rem" }}
               >
@@ -105,7 +92,7 @@ export default function Header() {
                   <NavLinkText>About</NavLinkText>
                 </ScrollLink>
               </CenterSpaceAround>
-            </PageWrapperDark>
+            </HamburgerMenu>
           )}
 
           {/* Menue */}
