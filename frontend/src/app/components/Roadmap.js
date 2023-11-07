@@ -1,11 +1,9 @@
-import Image from "next/image";
 import { gloock } from "../fonts";
 import {
   PageWrapper,
   H1Title,
   Content,
-  Icons,
-  ImageStyle,
+  ListItem,
   Box_2,
   H2Title,
   H3Title,
@@ -19,41 +17,65 @@ export default function Roadmap() {
 
       <Content>
         <Box_2>
-          <H2Title>1.</H2Title>
-          <H3Title>Lorem Ipsum</H3Title>
-          <ParaMid>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
+          <H2Title className={gloock.className} $Dark>
+            1.
+          </H2Title>
+          <H3Title className={gloock.className} $Dark>
+            Lorem Ipsum
+          </H3Title>
+          <ParaMid style={{ textAlign: "left" }}>
+            <ul>
+              <ListItem>
+                Lorem ipsum dolor sit amet, consectetuer elit.
+              </ListItem>
+              <ListItem>Aliquam tincidunt mauris eu risus.</ListItem>
+              <ListItem>Vivamus vestibulum ntulla nec ante.</ListItem>
+              <ListItem>Cras ornare tristique elit.</ListItem>
+              <ListItem>Nunc dignissim risus id metus.</ListItem>
+              <ListItem>Praesent placerat risus quis eros.</ListItem>
+            </ul>
           </ParaMid>
         </Box_2>
 
         <Box_2>
-          <H2Title>2.</H2Title>
-          <H3Title>Lorem Ipsum</H3Title>
-          <ParaMid>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
+          <H2Title className={gloock.className} $Dark>
+            2.
+          </H2Title>
+          <H3Title className={gloock.className} $Dark>
+            Lorem Ipsum
+          </H3Title>
+          <ParaMid style={{ textAlign: "left" }}>
+            <ul>
+              <ListItem>
+                Lorem ipsum dolor sit amet, consectetuer elit.
+              </ListItem>
+              <ListItem>Aliquam tincidunt mauris eu risus.</ListItem>
+              <ListItem>Vivamus vestibulum ntulla nec ante.</ListItem>
+              <ListItem>Cras ornare tristique elit.</ListItem>
+              <ListItem>Nunc dignissim risus id metus.</ListItem>
+              <ListItem>Praesent placerat risus quis eros.</ListItem>
+            </ul>
           </ParaMid>
         </Box_2>
 
         <Box_2>
-          <H2Title>3.</H2Title>
-          <H3Title>Lorem Ipsum</H3Title>
-          <ParaMid>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
+          <H2Title className={gloock.className} $Dark>
+            3.
+          </H2Title>
+          <H3Title className={gloock.className} $Dark>
+            Lorem Ipsum
+          </H3Title>
+          <ParaMid style={{ textAlign: "left" }}>
+            <ul>
+              <ListItem>
+                Lorem ipsum dolor sit amet, consectetuer elit.
+              </ListItem>
+              <ListItem>Aliquam tincidunt mauris eu risus.</ListItem>
+              <ListItem>Vivamus vestibulum ntulla nec ante.</ListItem>
+              <ListItem>Cras ornare tristique elit.</ListItem>
+              <ListItem>Nunc dignissim risus id metus.</ListItem>
+              <ListItem>Praesent placerat risus quis eros.</ListItem>
+            </ul>
           </ParaMid>
         </Box_2>
       </Content>
