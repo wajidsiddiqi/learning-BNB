@@ -13,7 +13,7 @@ import {
 
 export default function About() {
   return (
-    <PageWrapper id="about" style={{ marginTop: "120px" }}>
+    <PageWrapper id="about">
       <H1Title className={gloock.className}>About</H1Title>
       <BoxContainer>
         <RightSide>

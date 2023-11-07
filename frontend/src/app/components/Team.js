@@ -13,7 +13,7 @@ import {
 
 export default function Team() {
   return (
-    <PageWrapper id="team" style={{ marginTop: "120px" }}>
+    <PageWrapper id="team">
       <H1Title className={gloock.className}>Our Team</H1Title>
 
       <Content>

@@ -12,7 +12,7 @@ import {
 
 export default function Roadmap() {
   return (
-    <PageWrapper id="roadmap" style={{ marginTop: "120px" }}>
+    <PageWrapper id="roadmap">
       <H1Title className={gloock.className}>Roadmap</H1Title>
 
       <Content>
@@ -23,7 +23,7 @@ export default function Roadmap() {
           <H3Title className={gloock.className} $Dark>
             Lorem Ipsum
           </H3Title>
-          <ParaMid style={{ textAlign: "left" }}>
+          <ParaMid style={{ textAlign: "left" }} $Dark>
             <ul>
               <ListItem>
                 Lorem ipsum dolor sit amet, consectetuer elit.
@@ -44,7 +44,7 @@ export default function Roadmap() {
           <H3Title className={gloock.className} $Dark>
             Lorem Ipsum
           </H3Title>
-          <ParaMid style={{ textAlign: "left" }}>
+          <ParaMid style={{ textAlign: "left" }} $Dark>
             <ul>
               <ListItem>
                 Lorem ipsum dolor sit amet, consectetuer elit.
@@ -65,7 +65,7 @@ export default function Roadmap() {
           <H3Title className={gloock.className} $Dark>
             Lorem Ipsum
           </H3Title>
-          <ParaMid style={{ textAlign: "left" }}>
+          <ParaMid style={{ textAlign: "left" }} $Dark>
             <ul>
               <ListItem>
                 Lorem ipsum dolor sit amet, consectetuer elit.
