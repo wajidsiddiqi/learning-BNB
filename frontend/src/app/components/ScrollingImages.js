@@ -4,7 +4,7 @@ import Marquee from "react-fast-marquee";
 
 export default function ScrollingImages() {
   return (
-    <MaxWidth style={{ marginTop: "80px" }}>
+    <MaxWidth style={{ paddingTop: "80px" }}>
       <Marquee speed={60}>
         <Image
           src="/assets/Images/1.jpeg"
