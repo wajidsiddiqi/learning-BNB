@@ -7,10 +7,8 @@
 body {
   background-color: #171319;
   background-image: url(/assets/bgs/bg1.png);
-  height: 100%;
-  width: 100%;
-  background-position: center;
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 }
 
