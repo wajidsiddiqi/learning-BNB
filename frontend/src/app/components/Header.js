@@ -12,10 +12,11 @@ import {
   MaxWidth,
   StyledConnectButton,
   StyledNav,
-  StyledButton,
   HamburgerMenu,
   HeaderBtn,
   NavLinkText,
+  Menu,
+  BurgerButton,
 } from "@/app/styles/styles.js";
 
 export default function Header() {
@@ -52,11 +53,9 @@ export default function Header() {
             <Image src="/assets/logo.svg" width="35" height="35" alt="Logo" />
           </NextLink>
           {/* Hamburger Menu */}
-          {isMobile && isOpen && (
-            <HamburgerMenu right={isOpen}>
-              <CenterSpaceAround
-                style={{ flexDirection: "column", gap: "2rem" }}
-              >
+          {isMobile && (
+            <HamburgerMenu isOpen={isOpen}>
+              <Menu isOpen={isOpen}>
                 <NextLink
                   href="/"
                   style={{ textDecoration: "none" }}
@@ -91,7 +90,7 @@ export default function Header() {
                 >
                   <NavLinkText>About</NavLinkText>
                 </ScrollLink>
-              </CenterSpaceAround>
+              </Menu>
             </HamburgerMenu>
           )}
 
@@ -129,7 +128,8 @@ export default function Header() {
 
             {/* Hamburger Button - Fixed position */}
             {isMobile && (
-              <StyledButton
+              <BurgerButton
+                isOpen={isOpen}
                 style={{ zIndex: "999", margin: "0", padding: "0" }}
               >
                 <Hamburger
@@ -137,7 +137,7 @@ export default function Header() {
                   toggle={handleMenuToggle}
                   size={19.2}
                 />
-              </StyledButton>
+              </BurgerButton>
             )}
           </HeaderBtn>
         </CenterSpaceBetween>
