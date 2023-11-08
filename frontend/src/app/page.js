@@ -1,30 +1,24 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import Header from "./components/Header";
-// import Footer from "./components/Footer";
-// import EnlargeImage from "./components/EnlargeImage";
-// import { TotalSupply } from "./components/getterFuntions";
+import Footer from "./components/Footer";
+import Roadmap from "./components/Roadmap";
 import Mint from "./components/Mint";
+import ScrollingImages from "./components/ScrollingImages";
+import Team from "./components/Team";
+import About from "./components/About";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 import { gloock } from "./fonts";
 import {
   PageWrapper,
   MainH1Title,
   ParaBig,
-  ParaMid,
   ParaSm,
   StyledButton,
-  ImageContainer,
-  ImageStyle,
   Center,
-  LeftSide,
-  RightSide,
   Container,
   Box,
   ChildContainer,
-  BoxContainer,
-  Icon,
   QuantityBox,
   BoxContainer_2,
   ParaContainer,
@@ -94,7 +88,12 @@ export default function Home() {
           </Box>
         </Container>
       </PageWrapper>
-      {/* <Footer /> */}
+      <Roadmap />
+      <ScrollingImages />
+      <Team />
+      <About />
+      <Footer />
+      <ScrollToTopButton />
     </React.Fragment>
   );
 }
