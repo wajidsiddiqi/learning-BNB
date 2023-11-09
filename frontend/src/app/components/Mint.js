@@ -7,7 +7,7 @@ import {
   useAccount,
 } from "wagmi";
 import { ConnectKitButton } from "connectkit";
-
+import Image from "next/image";
 import {
   StyledButton,
   StyledConnectButton,
@@ -136,7 +136,7 @@ export default function Mint({ quantity }) {
                   color: "#21325b",
                 }}
               >
-                Etherscan
+                BscScan
               </a>
             </SuccessMsg>
           </SuccessContainer>
